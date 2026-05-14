@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { supabase } from "../lib/supabase";
-import { VENDORS } from "../config/vendors";
+import { AFFILIATES as VENDORS } from "../config/affiliates";
 import { HOUSES } from "../config/houses";
+
+// NOTA: AdminScreen está sendo adaptado em fases.
+// Esta versão ainda usa a estrutura de dashboard do bolão antigo
+// (apenas renomeada vendor → affiliate pra não quebrar build).
+// Adaptação completa pra aprovação de prints vem na próxima iteração.
 
 const ADMIN_PASSWORD = "arena2026"; // troque antes de subir
 

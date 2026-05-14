@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { HOUSES } from "../config/houses";
-import PrizesHero from "../components/PrizesHero";
 
-export default function FormScreen({ onSubmit }) {
-  const [form, setForm] = useState({ name: "", email: "", whatsapp: "", pix: "", house: "" });
+export default function FormScreen({ onSubmit, onBack }) {
+  const [form, setForm] = useState({ name: "", email: "", whatsapp: "" });
   const [errors, setErrors] = useState({});
 
   function validate() {
     const e = {};
-    if (!form.name.trim()) e.name = "Informe seu nome";
+    if (!form.name.trim()) e.name = "Informa teu nome";
     if (!form.email.trim() || !/\S+@\S+\.\S+/.test(form.email)) e.email = "E-mail inválido";
     if (!form.whatsapp.trim() || form.whatsapp.replace(/\D/g, "").length < 10) e.whatsapp = "WhatsApp inválido";
-    if (!form.house) e.house = "Selecione uma casa";
     return e;
   }
 
@@ -19,6 +16,7 @@ export default function FormScreen({ onSubmit }) {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
+    window.gtag?.('event', 'form_submitted');
     onSubmit(form);
   }
 
@@ -30,61 +28,63 @@ export default function FormScreen({ onSubmit }) {
   }
 
   return (
-    <div className="screen">
-      <PrizesHero />
+    <div className="screen form-screen">
+      <div className="form-header">
+        <h2 className="form-title">Quase lá!</h2>
+        <p className="form-desc">
+          Antes de finalizar, precisamos dos teus dados pra <strong>te avisar quando a participação for validada</strong>.
+          A gente vai te chamar no WhatsApp assim que aprovar teu print.
+        </p>
+      </div>
+
       <form onSubmit={handleSubmit} noValidate>
         <div className="card">
-          <h2 className="section-title">Seus Dados</h2>
-
           <div className="field">
-            <label>Nome Completo</label>
-            <input type="text" placeholder="Seu nome" value={form.name}
-              onChange={e => setForm({ ...form, name: e.target.value })} />
+            <label>Nome completo</label>
+            <input
+              type="text"
+              placeholder="Como te chamamos"
+              value={form.name}
+              onChange={e => setForm({ ...form, name: e.target.value })}
+            />
             {errors.name && <span className="error">{errors.name}</span>}
           </div>
 
           <div className="field">
             <label>E-mail</label>
-            <input type="email" placeholder="seu@email.com" value={form.email}
-              onChange={e => setForm({ ...form, email: e.target.value })} />
+            <input
+              type="email"
+              placeholder="seu@email.com"
+              value={form.email}
+              onChange={e => setForm({ ...form, email: e.target.value })}
+            />
             {errors.email && <span className="error">{errors.email}</span>}
           </div>
 
           <div className="field">
-            <label>WhatsApp</label>
-            <input type="tel" placeholder="(00) 00000-0000" value={form.whatsapp}
-              onChange={e => setForm({ ...form, whatsapp: formatWhatsapp(e.target.value) })} />
+            <label>WhatsApp <span className="field-required">*</span></label>
+            <input
+              type="tel"
+              placeholder="(00) 00000-0000"
+              value={form.whatsapp}
+              onChange={e => setForm({ ...form, whatsapp: formatWhatsapp(e.target.value) })}
+            />
             {errors.whatsapp && <span className="error">{errors.whatsapp}</span>}
-          </div>
-
-          <div className="field">
-            <label>Chave PIX <span className="optional">(opcional)</span></label>
-            <input type="text" placeholder="CPF, e-mail, telefone ou chave aleatória" value={form.pix}
-              onChange={e => setForm({ ...form, pix: e.target.value })} />
-            <span className="hint">Você pode enviar depois para o vendedor</span>
+            <span className="hint">
+              ⚠️ Tem que ser um WhatsApp ativo — é por aí que a gente libera o acesso ao Grupo VIP.
+            </span>
           </div>
         </div>
 
-        <div className="card" style={{marginTop: 24}}>
-          <h2 className="section-title">Escolha uma Casa</h2>
-          <p className="section-sub">Selecione onde você <strong className="highlight">ainda não tem conta</strong></p>
-
-          <div className="houses-grid">
-            {HOUSES.map(house => (
-              <button key={house.id} type="button"
-                className={`house-btn ${form.house === house.id ? "selected" : ""}`}
-                onClick={() => { setForm({ ...form, house: house.id }); setErrors({ ...errors, house: null }); }}>
-                <img src={house.logo} alt={house.name} className="house-logo" />
-                <span className="house-name">{house.name}</span>
-              </button>
-            ))}
-          </div>
-          {errors.house && <span className="error" style={{marginTop:12, display:'block'}}>{errors.house}</span>}
+        <div className="form-privacy">
+          🔒 Teus dados só são usados pra validar a participação e te liberar no grupo.
+          Sem spam, sem venda de cadastro.
         </div>
 
-        <button type="submit" className="btn-primary" style={{marginTop: 8}}>
-          Fazer Palpites →
-        </button>
+        <div className="form-actions">
+          <button type="button" className="btn-ghost" onClick={onBack}>← Voltar</button>
+          <button type="submit" className="btn-primary">CONTINUAR →</button>
+        </div>
       </form>
     </div>
   );
