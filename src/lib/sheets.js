@@ -9,7 +9,7 @@
 //   casa_escolhida       → selecionou casa parceira na tela de validate
 //   casa_clicada         → clicou no link de afiliado da casa
 //   print_enviado        → mandou print de depósito → aguardando_validacao
-//   aprovado             → admin aprovou o print (libera grupo VIP)
+//   aprovado             → admin aprovou o print (libera comunidade do Mateus)
 //   rejeitado            → admin rejeitou (com motivo)
 
 const SHEETS_URL = "https://script.google.com/macros/s/REPLACE_ME/exec";

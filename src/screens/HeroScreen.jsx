@@ -28,8 +28,7 @@ export default function HeroScreen({ affiliateCode, onStart }) {
           )}
 
           <p className="hero-cta-text">
-            Escolhe os <strong>23 nomes</strong> que tu acha que o Ancelotti vai chamar.
-            Quem chegar mais perto da convocação real <strong>leva R$ 1.000 no PIX</strong>.
+            Quem mais acertar a convocação leva <strong>R$ 1.000 no PIX</strong>.
           </p>
 
           <button className="btn-primary btn-hero" onClick={onStart}>
@@ -76,8 +75,8 @@ export default function HeroScreen({ affiliateCode, onStart }) {
           <div className="hero-step">
             <div className="hero-step-num">4</div>
             <div className="hero-step-text">
-              <strong>Entra no Grupo VIP da Copa</strong>
-              <span>Tips diárias do Mateus até o fim do mundial</span>
+              <strong>Entra na Comunidade do Mateus</strong>
+              <span>Grupo do WhatsApp com tips diárias até o fim da Copa</span>
             </div>
           </div>
         </div>

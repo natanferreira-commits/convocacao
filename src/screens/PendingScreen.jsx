@@ -9,7 +9,7 @@ export default function PendingScreen({ participant, affiliateCode, entryId }) {
         <div className="pending-icon">⏳</div>
         <h2>Tua participação tá em análise</h2>
         <p className="pending-sub">
-          Em até <strong>6 horas</strong> a gente valida e libera teu acesso ao Grupo VIP da Copa do Mateus.
+          Em até <strong>6 horas</strong> a gente valida e libera teu acesso à Comunidade do Mateus no WhatsApp.
         </p>
 
         <div className="pending-card">
@@ -35,7 +35,7 @@ export default function PendingScreen({ participant, affiliateCode, entryId }) {
             </p>
           )}
           <p className="hint">
-            Assim que o admin aprovar teu print, você recebe a chamada no WhatsApp com o link do grupo.
+            Assim que o admin aprovar teu print, você recebe a chamada no WhatsApp com o link da comunidade.
           </p>
         </div>
 

@@ -71,13 +71,13 @@ export default function FormScreen({ onSubmit, onBack }) {
             />
             {errors.whatsapp && <span className="error">{errors.whatsapp}</span>}
             <span className="hint">
-              ⚠️ Tem que ser um WhatsApp ativo — é por aí que a gente libera o acesso ao Grupo VIP.
+              ⚠️ Tem que ser um WhatsApp ativo — é por aí que a gente libera o acesso à Comunidade do Mateus.
             </span>
           </div>
         </div>
 
         <div className="form-privacy">
-          🔒 Teus dados só são usados pra validar a participação e te liberar no grupo.
+          🔒 Teus dados só são usados pra validar a participação e te liberar na comunidade.
           Sem spam, sem venda de cadastro.
         </div>
 
