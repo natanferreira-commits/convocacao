@@ -46,7 +46,7 @@ export default function HeroScreen({ affiliateCode, onStart }) {
         <div className="hero-prize-card">
           <div className="hero-prize-label">PRÊMIO</div>
           <div className="hero-prize-value">R$ 1.000 no PIX</div>
-          <div className="hero-prize-sub">Pagamento direto pro vencedor após a convocação oficial · Inscrições até domingo 23h59</div>
+          <div className="hero-prize-sub">Pagamento direto pro vencedor após a convocação oficial</div>
         </div>
 
         <div className="hero-howto">
