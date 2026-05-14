@@ -24,7 +24,10 @@ export default function Footer() {
           estabelecidos.
         </p>
 
-        <p className="footer-copy">© 2026 Dupla Aposta. Todos os direitos reservados.</p>
+        <p className="footer-copy">
+          © 2026 Dupla Aposta. Todos os direitos reservados.
+          <a href="/admin" className="footer-admin-link" aria-label="Acesso administrativo">·</a>
+        </p>
 
       </div>
     </footer>

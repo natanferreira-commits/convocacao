@@ -742,6 +742,20 @@ body::before {
   font-size: 11px;
   color: #4a4a5a;
 }
+.footer-admin-link {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  color: #2a2a3a;
+  text-decoration: none;
+  font-weight: 900;
+  border-radius: 4px;
+  transition: color .15s, background .15s;
+}
+.footer-admin-link:hover {
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, .04);
+}
 
 /* disclaimer maior */
 .prizes-disclaimer {

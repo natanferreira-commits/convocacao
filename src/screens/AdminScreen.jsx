@@ -8,7 +8,9 @@ import { HOUSES } from "../config/houses";
 // (apenas renomeada vendor → affiliate pra não quebrar build).
 // Adaptação completa pra aprovação de prints vem na próxima iteração.
 
-const ADMIN_PASSWORD = "arena2026"; // troque antes de subir
+// MVP: senha hardcoded (qualquer um com devtools consegue ver — só obstáculo casual)
+// V2: trocar pra magic link via Supabase Auth + whitelist de emails
+const ADMIN_PASSWORD = "bolao-arena-2026";
 
 export default function AdminScreen() {
   const [authed, setAuthed] = useState(false);
