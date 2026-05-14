@@ -37,6 +37,11 @@ export default function LineupScreen({ onSubmit, onBack }) {
   const canSubmit = validateLineup([...selected]).valid;
   const remaining = SELECTION_RULES.total - total;
 
+  // Quantas vagas "livres" sobram depois de cumprir os mínimos por posição
+  const totalMin = Object.values(SELECTION_RULES.minByPosition).reduce((a, b) => a + b, 0);
+  const minsOk = POSITIONS.every(pos => countByPos[pos] >= SELECTION_RULES.minByPosition[pos]);
+  const freeSlots = SELECTION_RULES.total - totalMin;
+
   function handleSubmit() {
     const v = validateLineup([...selected]);
     if (!v.valid) {
@@ -52,8 +57,9 @@ export default function LineupScreen({ onSubmit, onBack }) {
       <div className="lineup-intro">
         <h2 className="lineup-title">Monta tua escalação</h2>
         <p className="lineup-desc">
-          Escolhe <strong>23 jogadores</strong> dos 52 que a CBF divulgou na pré-lista.
-          Você decide a distribuição entre as posições, respeitando os <strong>mínimos</strong>.
+          São <strong>23 vagas</strong> pra preencher entre os 52 da pré-lista.
+          Cada posição tem um <strong>mínimo</strong> obrigatório — o resto você distribui como quiser
+          ({freeSlots} vagas livres depois dos mínimos).
         </p>
       </div>
 
@@ -68,7 +74,13 @@ export default function LineupScreen({ onSubmit, onBack }) {
             <span className="lineup-counter-total">/ {SELECTION_RULES.total}</span>
           </div>
           <div className="lineup-counter-status">
-            {canSubmit ? "✓ Pronto pra confirmar" : `Faltam ${remaining}`}
+            {canSubmit
+              ? "✓ Pronto pra confirmar"
+              : total === SELECTION_RULES.total
+                ? "⚠️ Mínimos pendentes"
+                : minsOk
+                  ? `Faltam ${remaining} (mínimos OK)`
+                  : `Faltam ${remaining}`}
           </div>
         </div>
         <div className="lineup-counter-pos">
@@ -78,11 +90,25 @@ export default function LineupScreen({ onSubmit, onBack }) {
             const ok = count >= min;
             return (
               <span key={pos} className={`lineup-pos-pill ${ok ? "ok" : ""}`}>
-                {POSITION_LABELS[pos].slice(0, 3).toUpperCase()} {count}/{min}
+                <strong>{POSITION_LABELS[pos].slice(0, 3).toUpperCase()} {count}</strong>
+                <span className="lineup-pos-meta">{ok ? "✓" : `mín ${min}`}</span>
               </span>
             );
           })}
         </div>
+
+        {/* Botão de confirmar integrado ao counter sticky — sempre visível */}
+        <button
+          className={`lineup-counter-cta ${canSubmit ? "ready" : ""}`}
+          onClick={handleSubmit}
+          disabled={!canSubmit}
+        >
+          {canSubmit
+            ? "CONFIRMAR ESCALAÇÃO →"
+            : total === SELECTION_RULES.total
+              ? "Ajuste os mínimos por posição"
+              : `Selecione mais ${remaining}`}
+        </button>
       </div>
 
       {/* Abas de posição */}
@@ -95,7 +121,8 @@ export default function LineupScreen({ onSubmit, onBack }) {
           >
             <span className="lineup-tab-label">{POSITION_LABELS[pos]}</span>
             <span className="lineup-tab-count">
-              {countByPos[pos]}/{SELECTION_RULES.minByPosition[pos]}+
+              {countByPos[pos]}
+              <span className="lineup-tab-min">mín {SELECTION_RULES.minByPosition[pos]}</span>
             </span>
           </button>
         ))}

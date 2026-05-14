@@ -29,15 +29,15 @@ export default function HeroScreen({ affiliateCode, onStart }) {
 
           <p className="hero-cta-text">
             Escolhe os <strong>23 nomes</strong> que tu acha que o Ancelotti vai chamar.
-            Quem chegar mais perto da convocação real <strong>leva o prêmio</strong>.
+            Quem chegar mais perto da convocação real <strong>leva R$ 1.000 no PIX</strong>.
           </p>
 
           <button className="btn-primary btn-hero" onClick={onStart}>
             MONTAR MINHA ESCALAÇÃO →
           </button>
 
-          <div className="hero-deadline">
-            ⏰ Inscrições até <strong>domingo 23h59</strong>
+          <div className="hero-prize-tag">
+            💰 <strong>R$ 1.000 no PIX</strong> direto pra quem mais acertar
           </div>
         </div>
       </div>
@@ -46,8 +46,8 @@ export default function HeroScreen({ affiliateCode, onStart }) {
       <div className="hero-body">
         <div className="hero-prize-card">
           <div className="hero-prize-label">PRÊMIO</div>
-          <div className="hero-prize-value">A definir</div>
-          <div className="hero-prize-sub">Anúncio oficial na quarta após convocação</div>
+          <div className="hero-prize-value">R$ 1.000 no PIX</div>
+          <div className="hero-prize-sub">Pagamento direto pro vencedor após a convocação oficial · Inscrições até domingo 23h59</div>
         </div>
 
         <div className="hero-howto">

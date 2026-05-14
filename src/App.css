@@ -1113,17 +1113,22 @@ body { background: var(--bg); }
   margin: 4px 0;
 }
 
-.hero-deadline {
+.hero-prize-tag {
   text-align: center;
-  font-size: 13px;
-  color: rgba(255, 255, 255, .85);
-  padding: 6px 10px;
-  background: rgba(10, 20, 16, .55);
+  font-size: 14px;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 203, 5, 0.15) 0%, rgba(0, 179, 59, 0.12) 100%);
+  border: 1px solid rgba(255, 203, 5, 0.35);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-radius: 8px;
 }
-.hero-deadline strong { color: var(--yellow); font-weight: 800; }
+.hero-prize-tag strong {
+  color: var(--yellow);
+  font-weight: 900;
+  letter-spacing: .3px;
+}
 
 /* Corpo da hero — flow natural, vem depois da imagem */
 .hero-body {
@@ -1267,14 +1272,20 @@ body { background: var(--bg); }
 }
 .lineup-counter-pos { display: flex; gap: 6px; flex-wrap: wrap; }
 .lineup-pos-pill {
+  display: inline-flex; align-items: center; gap: 6px;
   font-size: 11px; font-weight: 700; letter-spacing: .5px;
   padding: 4px 10px; border-radius: 999px;
   background: var(--bg2); border: 1px solid var(--border); color: var(--text-dim);
 }
+.lineup-pos-pill strong { color: #fff; font-weight: 800; }
 .lineup-pos-pill.ok {
   background: rgba(46, 211, 104, .15);
   border-color: var(--green);
   color: var(--green-lt);
+}
+.lineup-pos-pill.ok strong { color: var(--green-lt); }
+.lineup-pos-meta {
+  font-size: 9.5px; font-weight: 600; opacity: .75; letter-spacing: 0;
 }
 
 .lineup-tabs {
@@ -1297,8 +1308,17 @@ body { background: var(--bg); }
   box-shadow: 0 0 0 2px var(--green-dim);
 }
 .lineup-tab-label { font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; }
-.lineup-tab-count { font-size: 13px; font-weight: 900; color: var(--yellow); }
+.lineup-tab-count {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  font-size: 15px; font-weight: 900; color: var(--yellow); line-height: 1;
+}
+.lineup-tab-min {
+  font-size: 9px; font-weight: 600; opacity: .7;
+  margin-top: 2px; letter-spacing: 0;
+  color: var(--text-dim);
+}
 .lineup-tab.active .lineup-tab-count { color: #fff; }
+.lineup-tab.active .lineup-tab-min { color: rgba(255, 255, 255, .8); }
 
 /* Lista horizontal de jogadores (1 card por linha) */
 .lineup-list {
@@ -1364,13 +1384,42 @@ body { background: var(--bg); }
   color: #fff;
 }
 
-.lineup-actions {
-  display: flex; gap: 10px; margin-top: 12px;
-  position: sticky; bottom: 0;
-  background: linear-gradient(180deg, transparent 0%, var(--bg) 25%);
-  padding: 12px 0 0;
+/* Botão de confirmar integrado ao counter sticky (sempre visível no topo) */
+.lineup-counter-cta {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg2);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-dim);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  cursor: not-allowed;
+  transition: all .15s;
 }
-.lineup-actions .btn-ghost { flex: 0 0 auto; }
+.lineup-counter-cta.ready {
+  background: var(--green);
+  border-color: var(--green-lt);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--green-dk);
+  font-size: 14px;
+}
+.lineup-counter-cta.ready:hover {
+  background: var(--green-lt);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 var(--green-dk);
+}
+
+/* Botão grande final — sem sticky, flow natural */
+.lineup-actions {
+  display: flex; gap: 10px;
+  margin-top: 20px;
+  padding: 0;
+}
+.lineup-actions .btn-ghost { flex: 0 0 auto; width: auto; }
 .lineup-actions .btn-primary { flex: 1; }
 
 /* ── Form ── */
